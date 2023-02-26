@@ -7,6 +7,7 @@ Correspondingly, we are saving the test cases under a different package(Called t
 src\test\features
 
 The framework implements The TestNG framework for generating reports and is integrated with Jenkins tool.
+The Framework can be run in Chrome and Edge browsers
 
 <br/>
 
@@ -39,14 +40,14 @@ Java 11 or Java 17
 
 Install Latest Maven and set the path in your system variables
 
-### Run on cmd through mvn command
+### Run on command prompt through mvn command
 
 
 1.open cmd and go to the location where folder is saved
 2.Run the test by giving command-
-mvn test -PRegression
+mvn test -PRegression DBrowser = chrome
 
-
+mvn test -PRegression DBrowser = edge
 
 <br/>
 
@@ -58,18 +59,17 @@ Install TestNg plugin via eclipseIDE workplace
 
 ### Run via IDE
 
-Run the test by going to testng.xml placed under TestSuite/testng.xml
+Run the test by going to testng.xml placed under path test/TestSuite/testng.xml
 
 
 
 # Open issues
 
--ClickandHold on calendar date selection not working as expected.
+
 -Selection of off range dates in the current month
+-If Phone number takes characters and not numbers
 
 
-
-# Challenges faced 
 
 - 
 - 
