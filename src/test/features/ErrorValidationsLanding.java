@@ -1,9 +1,9 @@
-package test;
+package test.features;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import testbasecomponents.BaseTest;
+import test.base.BaseTest;
 
 public class ErrorValidationsLanding extends BaseTest {
 	

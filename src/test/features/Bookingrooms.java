@@ -1,9 +1,10 @@
-package test;
+package test.features;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import Aakanksha.pageobjects.BookRoom;
-import testbasecomponents.BaseTest;
+
+import internal.pageobjects.BookRoom;
+import test.base.BaseTest;
 
 public class Bookingrooms extends BaseTest {
 	

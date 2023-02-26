@@ -1,11 +1,10 @@
-package test;
+package test.features;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
-import Aakanksha.pageobjects.Bookerplatform;
-import testbasecomponents.BaseTest;
+import internal.pageobjects.BookerPlatform;
+import test.base.BaseTest;
 
 public class SubmitDetails extends BaseTest {
 	
@@ -13,7 +12,7 @@ public class SubmitDetails extends BaseTest {
 	  
 	  public void successUserRegistration() {
 	  
-	  Bookerplatform submitdetailsuser = new Bookerplatform(driver);
+	  BookerPlatform submitdetailsuser = new BookerPlatform(driver);
 	  submitdetailsuser.submitdetails("Aakanksha","aakanksha1411@gmail.com", "971708504521", "Hi There ",
 	  "Need to Book room for 4 people"); 
 	  String message =submitdetailsuser.Confirmmessage();

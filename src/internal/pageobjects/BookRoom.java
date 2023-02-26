@@ -1,4 +1,4 @@
-package Aakanksha.pageobjects;
+package internal.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import Aakanksha.Abstractcomponent.AbstractComponent;
+import internal.base.AbstractComponent;
 
 public class BookRoom extends AbstractComponent {
 

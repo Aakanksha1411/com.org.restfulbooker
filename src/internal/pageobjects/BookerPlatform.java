@@ -1,17 +1,17 @@
-package Aakanksha.pageobjects;
+package internal.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import Aakanksha.Abstractcomponent.AbstractComponent;
+import internal.base.AbstractComponent;
 
-public class Bookerplatform extends AbstractComponent{
+public class BookerPlatform extends AbstractComponent{
 
 WebDriver driver;
 
-public Bookerplatform(WebDriver driver)
+public BookerPlatform(WebDriver driver)
 
 {
 	super(driver);

@@ -1,4 +1,4 @@
-package testbasecomponents;
+package test.base;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -8,7 +8,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-import Resources.ExtentReporterNG;
+import resources.ExtentReporterNG;
 
 public class Listeners extends BaseTest implements ITestListener{
 	ExtentTest test;

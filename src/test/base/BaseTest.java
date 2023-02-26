@@ -1,4 +1,4 @@
-package testbasecomponents;
+package test.base;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,13 +13,13 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import Aakanksha.pageobjects.Bookerplatform;
+import internal.pageobjects.BookerPlatform;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 
 	public WebDriver driver;
-	public Bookerplatform submitdetailsuser;
+	public BookerPlatform submitdetailsuser;
 
 	public WebDriver intialisedriver() throws IOException
 
@@ -27,7 +27,7 @@ public class BaseTest {
 	
 		Properties prop = new Properties();
 
-		FileInputStream  fis= new FileInputStream(System.getProperty("user.dir")+"\\src\\Resources\\GlobalData.properties");
+		FileInputStream  fis= new FileInputStream(System.getProperty("user.dir")+"\\src\\resources\\global.properties");
 		prop.load(fis);
 		String browsername = System.getProperty("browser")!=null ? System.getProperty("browser") :prop.getProperty("browser");
 		
@@ -57,11 +57,11 @@ public class BaseTest {
 
 	}
 	@BeforeMethod
-	public Bookerplatform launchapplication() throws IOException
+	public BookerPlatform launchapplication() throws IOException
 	{
 		
 		intialisedriver();
-		submitdetailsuser = new Bookerplatform(driver);
+		submitdetailsuser = new BookerPlatform(driver);
 		submitdetailsuser.Goto();
 		return submitdetailsuser;
 
