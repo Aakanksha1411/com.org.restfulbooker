@@ -20,6 +20,10 @@ public BookerPlatform(WebDriver driver)
 }
 
 
+
+@FindBy(css =".row.hotel-description")
+WebElement Welcomemessage;
+
 @FindBy(id ="name")
 WebElement name;
 
@@ -77,8 +81,12 @@ WebElement Bookingroom;
   }
   
   
-  
-  
+  public String getwelcomemessage()
+  {
+	  
+	  
+	  return Welcomemessage.getText();
+  }
  
   public String getBlankErrorMessage()
 	{
