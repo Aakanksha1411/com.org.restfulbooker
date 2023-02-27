@@ -1,19 +1,21 @@
 # Overview of the framework
 
-This Framework uses Maven Build Automation Tool And Maven Project Setup For Selenium. Eclipse which is a  integrated development environment (IDE) has been used for developing applications and java is used as a programming language.The Automation framework is a Page Object Model (POM) which is a design pattern,  that creates Object Repository for web UI elements.  For each web page in the application, there is a corresponding Page Class. This Page class will identify the WebElements of that web page and also contains Page methods which perform operations on those WebElements.Package for Page Object Classes are saved under 
+This Framework uses Maven Build Automation Tool And Maven Project Setup For Selenium. Eclipse which is a  integrated development environment (IDE) has been used for developing applications and java is used as a programming language.The Automation framework is a Page Object Model (POM) which is a design pattern,  that creates Object Repository for web UI elements.  For each web page in the application, there is a corresponding Page Class. This Page class will identify the WebElements of that web page and also contains Page methods which perform operations on those WebElements.The framework implements The TestNG framework for generating reports and is integrated with Jenkins tool.
+The Framework can be run in Chrome and Edge browsers
+
+Package for Page Object Classes are saved under 
 src\internal\pageobjects
 
 Correspondingly, we are saving the test cases under a different package(Called test here)
 src\test\features
-
-The framework implements The TestNG framework for generating reports and is integrated with Jenkins tool.
-The Framework can be run in Chrome and Edge browsers
 
 Tested with:
 
 JDK 10
 Maven 3.6
 Windows 10
+
+
 
 <br/>
 
@@ -73,6 +75,7 @@ Install Latest Maven and set the path in your system variables
 
 2.Ran the test by giving command-
 mvn clean install test -PRegression DBrowser = chrome
+
 mvn clean install test -PRegression DBrowser = edge
 
 <br/>
@@ -86,6 +89,7 @@ Installed TestNg plugin via eclipseIDE workplace
 ### Run via EclipseIDE
 
 Ran the test by going to testng.xml placed under path test/TestSuite/testng.xml
+
 The test reports are  generated under test/reports/index
 
 
@@ -97,4 +101,6 @@ The test reports are  generated under test/reports/index
 -If Phone number takes characters and not numbers
 
 
+Test Plan is attached in the folder Test Plan
+Test Report for previous run is attached with in GITHub under Reports folder
 - 
