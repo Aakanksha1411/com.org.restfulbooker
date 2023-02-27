@@ -56,13 +56,12 @@ public class ErrorValidationBooking extends BaseTest {
 
 	{
 		BookRoom bookroomdetails = submitdetailsuser.BookRoomsclickonButton();
-		bookroomdetails.SelectDate("July", Arrays.asList("13", "14"));
+		bookroomdetails.SelectDate("June", Arrays.asList("18", "19","20"));
 		bookroomdetails.bookdetails("Aakanksha", "Mishra", "aakanksha@gmail.com", "973333178558290");
 		bookroomdetails.PopUpClose();
 		BookRoom bookroomdetails1 = submitdetailsuser.BookRoomsclickonButton();
-		bookroomdetails1.SelectDate("July", Arrays.asList("13", "14"));
-
-		bookroomdetails1.bookdetails("John", "monroe", "John1344@gmail.com", "9713437080452");
+		bookroomdetails1.SelectDate("June", Arrays.asList("18", "19","20"));
+        bookroomdetails1.bookdetails("John", "monroe", "John1344@gmail.com", "9713437080452");
 		Assert.assertEquals(
 				"The room dates are either invalid or are already booked for one or more of the dates that you have selected.",
 				bookroomdetails.getBlankErrorMessageNull());

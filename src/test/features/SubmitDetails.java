@@ -33,7 +33,7 @@ public class SubmitDetails extends BaseTest {
 
 	@Test
 
-	public void Footerlink() {
+	public void FooterlinkHomePage() {
 
 		Assert.assertEquals(submitdetailsuser.Footerlinks(), 6);
 	}

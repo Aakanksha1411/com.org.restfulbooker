@@ -66,7 +66,8 @@ public class BaseTest {
 	}
 
 	
-	  @AfterMethod public void TearDown() {
+	  @AfterMethod 
+	  public void TearDown() {
 	  
 	  driver.close(); 
 	  

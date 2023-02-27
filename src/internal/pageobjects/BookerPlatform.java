@@ -57,13 +57,6 @@ WebElement Confirmmessage;
 @FindBy(xpath = "//button[normalize-space()='Book this room']")
 WebElement Bookingroom;
 
-@FindBy(id = "footer")
-WebElement footerlinks;
-
-@FindBy(tagName = "a")
-List<WebElement> tagreference;
-
-
 
 
   public void submitdetails(String name1,String Email,String Number1,String
@@ -118,22 +111,13 @@ public void Goto()
 	driver.get("https://automationintesting.online/#/");
 }
 
-public int Footerlinks()
-{
-	
-	
-	System.out.println(footerlinks.findElements(By.tagName("a")).size());
-	for (int i = 1; i < footerlinks.findElements(By.tagName("a")).size(); i++) {
-		String clickonlinks = Keys.chord(Keys.CONTROL, Keys.ENTER);
-         footerlinks.findElements(By.tagName("a")).get(i).sendKeys(clickonlinks);
-	}
-         return footerlinks.findElements(By.tagName("a")).size();
+
 }
 
 
 		
 
-}
+
 		
 
 	

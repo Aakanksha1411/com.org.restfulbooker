@@ -84,8 +84,6 @@ public class BookRoom extends AbstractComponent {
 
     {
     	
-    	
-
         List<String> sortedList = daysList.stream().sorted().collect(Collectors.toList());     
 
         try {
