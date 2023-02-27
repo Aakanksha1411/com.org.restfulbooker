@@ -1,6 +1,9 @@
 # Overview of the framework
 
-This Framework uses Maven Build Automation Tool And Maven Project Setup For Selenium. Eclipse which is a  integrated development environment (IDE) has been used for developing applications and java is used as a programming language.The Automation framework is a Page Object Model (POM) which is a design pattern,  that creates Object Repository for web UI elements.  For each web page in the application, there is a corresponding Page Class. This Page class will identify the WebElements of that web page and also contains Page methods which perform operations on those WebElements.The framework implements The TestNG framework for generating reports and is integrated with Jenkins tool.
+This Framework uses Maven Build Automation Tool And Maven Project Setup For Selenium. Eclipse which is a  integrated development environment (IDE) has been used for developing applications and java is used as a programming language for automation scripts.The Automation framework consists of a Page Object Model (POM) which is a design pattern,  that creates Object Repository for web UI elements.  For each web page in the application, there is a corresponding Page Class. This Page class will identify the WebElements of that web page and also contains Page methods which perform operations on those WebElements.The framework implements The TestNG framework for generating reports and is integrated with Jenkins tool.The POM Framework helps reduce code duplication and improves test case maintenance.Framework help in making  code readable and  makes the code reusable (object repository is independent of test cases) 
+
+
+
 The Framework can be run in Chrome and Edge browsers
 
 Package for Page Object Classes are saved under 
