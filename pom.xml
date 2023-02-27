@@ -9,14 +9,11 @@
 		<maven.compiler.target>15</maven.compiler.target>
 	</properties>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>5.3.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -28,20 +25,16 @@
 			<version>3.6.3</version>
 			<type>pom</type>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>7.6.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-chrome-driver</artifactId>
 			<version>4.8.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
@@ -58,7 +51,6 @@
 			<id>Regression</id>
 			<build>
 				<pluginManagement>
-					<!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 					<plugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -66,7 +58,7 @@
 							<version>3.0.0-M9</version>
 							<configuration>
 								<suiteXmlFiles>
-									<suiteXmlFile>TestSuite/testng.xml</suiteXmlFile>
+									<suiteXmlFile>testsuite/testng.xml</suiteXmlFile>
 								</suiteXmlFiles>
 							</configuration>
 						</plugin>
@@ -78,7 +70,6 @@
 			<id>ErrorValidationBooking</id>
 			<build>
 				<pluginManagement>
-					<!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 					<plugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -98,7 +89,6 @@
 			<id>ErrorValidationLanding</id>
 			<build>
 				<pluginManagement>
-					<!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 					<plugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -118,7 +108,6 @@
 			<id>SubmitDetails</id>
 			<build>
 				<pluginManagement>
-					<!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 					<plugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>

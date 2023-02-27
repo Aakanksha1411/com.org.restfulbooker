@@ -1,9 +1,5 @@
 package internal.pageobjects;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,104 +9,81 @@ import internal.base.AbstractComponent;
 
 public class BookerPlatform extends AbstractComponent{
 
-WebDriver driver;
+	WebDriver driver;
 
-public BookerPlatform(WebDriver driver)
+	@FindBy(css =".row.hotel-description")
+	WebElement welcomeMessage;
 
-{
-	super(driver);
-	this.driver=driver;
-	PageFactory.initElements(driver, this);
-}
+	@FindBy(id ="name")
+	WebElement name;
 
+	@FindBy(id ="email")
+	WebElement email;
 
+	@FindBy(id ="phone")
+	WebElement phone;
 
-@FindBy(css =".row.hotel-description")
-WebElement Welcomemessage;
+	@FindBy(id ="subject")
+	WebElement subject;
 
-@FindBy(id ="name")
-WebElement name;
+	@FindBy(id ="description")
+	WebElement description;
 
-@FindBy(id ="email")
-WebElement email;
+	@FindBy(id ="submitContact")
+	WebElement submitContact;
 
-@FindBy(id ="phone")
-WebElement phone;
+	@FindBy(css = "div[class='alert alert-danger'] p")
+	WebElement errorMessage;
 
-@FindBy(id ="subject")
-WebElement subject;
+	@FindBy(css = "div[class='col-sm-5'] div h2")
+	WebElement confirmMessage;
 
-@FindBy(id ="description")
-WebElement Message;
+	@FindBy(xpath = "//button[normalize-space()='Book this room']")
+	WebElement bookingRoom;
 
-@FindBy(id ="submitContact")
-WebElement submit;
-
-
-@FindBy(css = "div[class='alert alert-danger'] p")
-WebElement errormessage;
-
-
-@FindBy(css = "div[class='col-sm-5'] div h2")
-WebElement Confirmmessage;
-
-@FindBy(xpath = "//button[normalize-space()='Book this room']")
-WebElement Bookingroom;
-
-
-
-  public void submitdetails(String name1,String Email,String Number1,String
-  subject1,String message1) 
-  { 
-	  
-	  
-  name.sendKeys(name1); 
-  email.sendKeys(Email);
-  phone.sendKeys(Number1); 
-  subject.sendKeys(subject1);
-  Message.sendKeys(message1); 
-  submit.click();
- 
-  
-  
-  }
-  
-  public BookRoom BookRoomsclickonButton()
-  
-  {
-		
-      Bookingroom.click();
-		
-	  BookRoom bookroomdetails = new BookRoom(driver);  
-	  return bookroomdetails;
-  }
-  
-  
-  public String getwelcomemessage()
-  {
-	  
-	  
-	  return Welcomemessage.getText();
-  }
- 
-  public String getBlankErrorMessage()
+	public BookerPlatform(WebDriver driver)
 	{
-		
-		return errormessage.getText();
+		super(driver);
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
 	}
 	
-public String Confirmmessage()
- 	{
- 		
- 		return Confirmmessage.getText();
- 	}
+	public void submitUserDetails(String userName, String userEmail, String userContact, String subjectMsg, String userMessage) 
+	{ 
+		name.sendKeys(userName); 
+		email.sendKeys(userEmail);
+		phone.sendKeys(userContact); 
+		subject.sendKeys(subjectMsg);
+		description.sendKeys(userMessage); 
+		submitContact.click();
+	}
 
-public void Goto()
+	public BookRoom submitRoomBooking()
+	{
+		bookingRoom.click();
+		BookRoom bookRoomDetails = new BookRoom(driver);  
+		return bookRoomDetails;
+	}
 
-{
-	driver.get("https://automationintesting.online/#/");
-}
+	public String getWelcomeMessage()
+	{
+		return welcomeMessage.getText();
+	}
 
+	public String getBlankErrorMessage()
+	{
+		return errorMessage.getText();
+	}
+
+	public String confirmMessage()
+	{
+		return confirmMessage.getText();
+	}
+
+	public void init()
+	{
+		driver.get("https://automationintesting.online/#/");
+	}
 
 }
 

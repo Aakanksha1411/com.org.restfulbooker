@@ -3,22 +3,19 @@ package resources;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public class ExtentReporterNG {
+public class ExtentReporterNG 
+{
 
-	
 	public static ExtentReports getReportObject()
 	{
 		String path =System.getProperty("user.dir")+"//reports//index.html";
-		ExtentSparkReporter reporter = new ExtentSparkReporter(path);
-		reporter.config().setReportName("Web Automation Results");
-		reporter.config().setDocumentTitle("Test Results");
-		
-		ExtentReports extent =new ExtentReports();
-		extent.attachReporter(reporter);
-		extent.setSystemInfo("Tester", "Aakanksha");
-		return extent;
-		
-		
-		
+		ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(path);
+		extentSparkReporter.config().setReportName("Web Automation Results");
+		extentSparkReporter.config().setDocumentTitle("Test Results");
+
+		ExtentReports extentReports =new ExtentReports();
+		extentReports.attachReporter(extentSparkReporter);
+		extentReports.setSystemInfo("Tester", "Aakanksha");
+		return extentReports;
 	}
 }

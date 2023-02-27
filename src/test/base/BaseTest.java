@@ -19,10 +19,24 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
 
 	public WebDriver driver;
-	public BookerPlatform submitdetailsuser;
+	public BookerPlatform bookerPlatform;
 
-	public WebDriver intialisedriver() throws IOException
+	@BeforeMethod
+	public BookerPlatform launchapplication() throws IOException {
 
+		intializeDriver();
+		bookerPlatform = new BookerPlatform(driver);
+		bookerPlatform.init();
+		return bookerPlatform;
+	}
+
+	@AfterMethod 
+	public void TearDown() 
+	{
+		driver.close(); 
+	}
+	
+	public WebDriver intializeDriver() throws IOException
 	{
 
 		Properties prop = new Properties();
@@ -30,48 +44,25 @@ public class BaseTest {
 		FileInputStream fis = new FileInputStream(
 				System.getProperty("user.dir") + "\\src\\resources\\global.properties");
 		prop.load(fis);
-		String browsername = System.getProperty("browser") != null ? System.getProperty("browser")
+		String browserName = System.getProperty("browser") != null ? System.getProperty("browser")
 				: prop.getProperty("browser");
 
-		if (browsername.equalsIgnoreCase("chrome")) {
-			ChromeOptions options = new ChromeOptions();
+		if (browserName.equalsIgnoreCase("chrome")) 
+		{
+			ChromeOptions chromeOptions = new ChromeOptions();
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver(options);
-
+			driver = new ChromeDriver(chromeOptions);
 		}
-
-		else if (browsername.equalsIgnoreCase("edge")) {
-		
+		else if (browserName.equalsIgnoreCase("edge")) 
+		{
 			WebDriverManager.edgedriver().setup();
-			EdgeOptions edgeoptions = new EdgeOptions();
-
-			driver = new EdgeDriver(edgeoptions);
-
+			EdgeOptions edgeOptions = new EdgeOptions();
+			driver = new EdgeDriver(edgeOptions);
 		}
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
 		driver.manage().window().maximize();
+		
 		return driver;
-
 	}
-
-	@BeforeMethod
-	public BookerPlatform launchapplication() throws IOException {
-
-		intialisedriver();
-		submitdetailsuser = new BookerPlatform(driver);
-		submitdetailsuser.Goto();
-		return submitdetailsuser;
-
-	}
-
-	
-	  @AfterMethod 
-	  public void TearDown() {
-	  
-	  driver.close(); 
-	  
-	  }
-	 
-
 }

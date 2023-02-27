@@ -15,128 +15,104 @@ import internal.base.AbstractComponent;
 public class BookRoom extends AbstractComponent {
 
 	WebDriver driver;
-    public BookRoom bookroomdetails;
+	
+	public BookRoom bookroomdetails;
 
-    public BookRoom(WebDriver driver)
+	@FindBy(css = "div[aria-label='Month View']")
+	WebElement selectedDates;
 
-    {
-        super(driver);
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+	@FindBy(css = "input[placeholder='Firstname']")
+	WebElement firstName;
 
-    }
+	@FindBy(css = "input[placeholder='Lastname']")
+	WebElement lastName;
 
+	@FindBy(xpath = "//input[@name='email']")
+	WebElement email;
 
-    @FindBy(css = "div[aria-label='Month View']")
-    WebElement Selectdates;
+	@FindBy(xpath = "//input[@name='phone']")
+	WebElement phone;
 
-    @FindBy(css = "input[placeholder='Firstname']")
-    WebElement Firstname;
+	@FindBy(css = ".btn.btn-outline-primary.float-right.book-room")
+	WebElement book;
 
-    @FindBy(css = "input[placeholder='Lastname']")
-    WebElement LastName;
+	@FindBy(css = "div[class='alert alert-danger'] p")
+	WebElement errorMessage;
 
-    @FindBy(xpath = "//input[@name='email']")
-    WebElement email;
+	@FindBy(css = ".alert.alert-danger")
+	WebElement errorMessageNull;
 
-    @FindBy(xpath = "//input[@name='phone']")
-    WebElement phone;
+	@FindBy(css = "button[class='btn btn-outline-primary']")
+	WebElement close;
 
-    @FindBy(css = ".btn.btn-outline-primary.float-right.book-room")
-    WebElement book;
+	@FindBy(xpath = ".//div[@aria-label='onRequestClose Example']")
+	WebElement modal;
 
-    @FindBy(css = "div[class='alert alert-danger'] p")
-    WebElement errormessage;
+	@FindBy(css = ".rbc-event-content")
+	WebElement dateSelection;
 
-    @FindBy(css = ".alert.alert-danger")
-    WebElement errormessagenull;
+	public BookRoom(WebDriver driver)
+	{
+		super(driver);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
+	public void bookdetails(String userFirstName, String userLastName, String userEmail, String userContact) 
+	{
+		firstName.sendKeys(userFirstName);
+		lastName.sendKeys(userLastName);
+		email.sendKeys(userEmail);
+		phone.sendKeys(userContact);
+		book.click();
+	}
 
-    @FindBy(css = "button[class='btn btn-outline-primary']")
-    WebElement Close;
+	public String getBlankErrorMessage() {
 
-    @FindBy(xpath = ".//div[@aria-label='onRequestClose Example']")
-    WebElement Modal;
+		return errorMessage.getText();
+	}
 
-    @FindBy(css = ".rbc-event-content")
-    WebElement NightSelected;
+	public String getBlankErrorMessageNull() {
 
-    public void bookdetails(String Fname, String Lname, String Email, String Phone) {
+		return errorMessageNull.getText();
+	}
 
-        Firstname.sendKeys(Fname);
-        LastName.sendKeys(Lname);
-        email.sendKeys(Email);
-        phone.sendKeys(Phone);
-        book.click();
+	public void selectDate(String month, List<String> daysList) throws Exception
+	{
+		List<String> sortedList = daysList.stream().sorted().collect(Collectors.toList());     
 
-    }
+		Actions actions = new Actions(driver);
 
-    public String getBlankErrorMessage() {
+		while (!driver.findElement(By.cssSelector(".rbc-toolbar-label")).getText().contains(month)) {
+			driver.findElement(By.xpath("//button[normalize-space()='Next']")).click();
+		}
 
-        return errormessage.getText();
-    }
+		WebElement startDay = driver.findElement(
+				By.xpath("//div[@class='rbc-row ']//div[not(contains(@class,'rbc-off-range'))]/button[text()="
+						+ sortedList.get(0) + "]"));
 
-    public String getBlankErrorMessageNull () {
+		WebElement endDay = driver.findElement(
+				By.xpath("//div[@class='rbc-row ']//div[not(contains(@class,'rbc-off-range'))]/button[text()="
+						+ sortedList.get(sortedList.size()-1) + "]"));
 
-        return errormessagenull.getText();
-    }
+		actions.clickAndHold(startDay)
+		.moveByOffset(-6, 0)
+		.moveToElement(endDay)
+		.release().build().perform();
+	}
 
-    public void SelectDate(String Month, List<String> daysList) throws Exception
+	public void closePopUp() 
+	{
+		close.click();
+	}
 
-    {
-    	
-        List<String> sortedList = daysList.stream().sorted().collect(Collectors.toList());     
+	public String confirmation()
+	{
+		return modal.getText();
+	}
 
-        try {
-            Actions actions = new Actions(driver);
-
-            while (!driver.findElement(By.cssSelector(".rbc-toolbar-label")).getText().contains(Month)) {
-                driver.findElement(By.xpath("//button[normalize-space()='Next']")).click();
-
-            }
-
-
-
-            WebElement startDay = driver.findElement(
-                    By.xpath("//div[@class='rbc-row ']//div[not(contains(@class,'rbc-off-range'))]/button[text()="
-                            + sortedList.get(0) + "]"));
-
-            WebElement endDay = driver.findElement(
-                    By.xpath("//div[@class='rbc-row ']//div[not(contains(@class,'rbc-off-range'))]/button[text()="
-                            + sortedList.get(sortedList.size()-1) + "]"));
-
-            actions.clickAndHold(startDay)
-            .moveByOffset(-6, 0)
-            .moveToElement(endDay)
-            .release().build().perform();
-
-            System.out.println("HI");
-        }
-
-
-
-        catch (Exception e)
-
-        {
-            throw new  Exception("Invalid Offrange date");
-
-
-        }
-    }
-
-    public void PopUpClose() {
-
-        Close.click();
-
-    }
-
-    public String confirmation()
-
-    {
-        return Modal.getText();
-    }
-
-    public String NightSelected()
-
-    {
-        return NightSelected.getText();
-    }}
+	public String selectedDates()
+	{
+		return dateSelection.getText();
+	}
+}
