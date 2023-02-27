@@ -15,28 +15,35 @@ public class AbstractComponent {
 
 	@FindBy(id = "footer")
 	WebElement footerLink;
-	
+
 	public AbstractComponent(WebDriver driver)
 	{
 		this.driver= driver;
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	public int getFooterCount()
 	{
 		List<WebElement> footerLinkList= footerLink.findElements(By.tagName("a"));
-		
+
 		return footerLinkList.size();
 	}
-	
-	public void clickFooters()
+
+	public boolean clickFooters()
 	{
+
 		List<WebElement> footerLinkList= footerLink.findElements(By.tagName("a"));
-		for (WebElement footer : footerLinkList) {
-			String footerLoc = Keys.chord(Keys.CONTROL, Keys.ENTER);
-			footer.sendKeys(footerLoc);
-			/// Assert if my page opened
-			/// Close the page here			
+		try {
+			for (int i =1 ; i <footerLinkList.size();i++)
+			{
+				String footerlinkclick = Keys.chord(Keys.CONTROL, Keys.ENTER);
+				footerLinkList.get(i).sendKeys(footerlinkclick);			
+			}
 		}
+		catch(IllegalArgumentException ex)
+		{
+			return false;
+		}
+		return true;
 	}	
 }

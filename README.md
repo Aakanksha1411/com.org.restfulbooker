@@ -1,109 +1,146 @@
-# Overview of the framework
+# Project Overview 
 
-This Framework uses Maven Build Automation Tool And Maven Project Setup For Selenium. Eclipse which is a  integrated development environment (IDE) has been used for developing applications and java is used as a programming language for automation scripts.The Automation framework consists of a Page Object Model (POM) which is a design pattern,  that creates Object Repository for web UI elements.  For each web page in the application, there is a corresponding Page Class. This Page class will identify the WebElements of that web page and also contains Page methods which perform operations on those WebElements.The framework implements The TestNG framework for generating reports and is integrated with Jenkins tool.The POM Framework helps reduce code duplication and improves test case maintenance.Framework help in making  code readable and  makes the code reusable (object repository is independent of test cases) 
+This section describes the tools and the framework in this project.
 
+## Tools used
 
+- Maven is used as the build automation tool and the overall framework is based on Selenium. 
+- The framework implements the TestNG framework for generating reports and supports integration with Jenkins.
+- Development time IDE:  Eclipse was used for developing the framework. 
+- Java is used as a programming language for the automation suites.
+- The framework can be run in Chrome and Edge browsers for now. By default, it's Edge.
 
-The Framework can be run in Chrome and Edge browsers
+<br/>
 
-Package for Page Object Classes are saved under 
-src\internal\pageobjects
+## Framework Design - The Page Object Model
 
-Correspondingly, we are saving the test cases under a different package(Called test here)
-src\test\features
+The automation framework is based on the Page Object Model(POM), which is a design pattern, that creates Object Repository 
+for web UI elements.  For each web page in the application, there is a corresponding Page Class. This Page class will 
+identify the WebElements of that web page and also contains Page methods which perform operations on those WebElements.
 
-Tested with:
+The POM Framework helps reduce code duplication and provides better control for the test case framework maintenance. 
+The framework is developed in a way to make the code readable and reusable(For example: the object repository is independent of the test cases).
 
-JDK 10
-Maven 3.6
-Windows 10
+<br/>
 
+## Project layout
+
+- src\internal: Contains the Page Object Models. The is further categorized into base(common code) and the actual page objects.
+- src\resources: The properties file
+- src\test: The actual test cases. The is further categorized into base(common code) and the test cases for different features. 
+- reports: This folder is the placeholder for the test case reports after execution via the TestNG framework. Note that it contains
+a pre saved report for reference. It will be overriden after run.
+- target: To hold the compiles classes after build.
+- testsuite: Contains the TestNG suite configuration. Also, the test plan for the project is place @ testsuite/testplan/TestPlan_BookingPlatform.doc for reference.
 
 
 <br/>
 
-# Data Dependency
 
-Need to feed the Month/Date before running the end to end test for booking rooms.
+# Suite Execution steps
 
+The section describes the different ways to execute the automation tests. There are 3 different ways in which it can be done:
+- Using Jenkins
+- Using Command line: maven commands
+- Using an IDE: Eclipse is taken as a reference point
 
-# Execution steps
+These are detailed in the subsequent sections.
 
-##Pre-requisites
+## Data Dependency Pre-requisite
 
-Java 11 or Java 17
-Github Plugins in Jenkins
+The dates for booking the rooms needs to be manually changed. This is because if you run the suite once, the booking for those dates
+are already done and some test cases start to fail in the next run. Following test cases need to be updated after the first run:
+The methods in the tests where the date needs to be changed: 
 
-
-###  Setup Job to Run Automated Test with Jenkins tool(CI/CD)
-  Ran the Jenkins dashboard by downloading .war file from jenkins and running on  http://localhost:8080/
-  CMD Commands given to run .war file to run Jenkins on local host
-  java -jar jenkins .war -httpPort=8080
-  
-After login/registering 
-  
-1.Clicked on New Item in the Jenkins dashboard
-
-2.Next entered the Job name, Selected Job type as Freestyle project, and clicked on OK button
-
-3.Specified the git repo URL by selecting the Git radio button under the Source Code Management section           
-https://github.com/Aakanksha1411/com.org.restfulbooker.git
-
-4.Added Branches to build - */main
-
-5.Added Build Command under Build Steps and since the project used for this is of type Maven, hence selecting the Invoke top- level Maven targets option.
-
-6.Added index.html for reporting under Index page[s] of Reports section
-
-7.Selected the Maven version and entered the Maven command under Goals;
- in this case, it will be – test -PRegression -D Browser= chrome or edge 
- 
-8.Executed the job, Clicked on Build Now, which  triggered a new build 
-
-9.Once the build is completed, viewed the console output or the HTML report (index.html) by clicking on the Build number
-
-
+- TestClass: BookingRooms, Method: validRoomBooking(). Here
+  - Change Date to some other Days in :List<String> dateList = Arrays.asList("28", "29");
+  - Change Month here: bookRoomDetails.selectDate("October", dateList); --> 
+		
+- Test Class: ErrorValidationBooking, Method:unavailableDate()
+  - Change month/days here: bookRoomDetails.selectDate("April", Arrays.asList("13", "14"));
 
 <br/>
 
-## Run on command prompt through mvn command
-
+## Execution using Jenkins 
 
 ### Prerequisite
 
-Install Latest Maven and set the path in your system variables
+Jenkins needs to be setup on local if you do not already have that available. 
+- Download the jenkins war file
+- Executed the war: java -jar jenkins .war -httpPort=8080
+- Open the jenkins dashboard :  http://localhost:8080/
+- Login/Register
 
+### Steps
 
-1.opened cmd and went to the location where folder is saved
+Following steps to be followed to run the restful booker suite on jenkins: 
 
-2.Ran the test by giving command-
-mvn clean install test -PRegression DBrowser = chrome
+1. Click on New Item in the Jenkins dashboard.
 
-mvn clean install test -PRegression DBrowser = edge
+2. Enter the Job name, select the Job type as Freestyle project, and click OK.
+
+3. Specified the git repo URL by selecting the Git radio button under the Source Code Management section. URL :           
+https://github.com/Aakanksha1411/com.org.restfulbooker.git
+
+4. Add branches to build - */main
+
+5. Add the build command under build steps and since the project used for this is of type Maven,  select the "Invoke top- level Maven targets" option.
+
+6. Add index.html for reporting under Index page[s] of the Reports section.
+
+7. Select the Maven version and entered the following maven command under Goals: test -PRegression -Dbrowser=chrome OR test -PRegression -Dbrowser= edge.
+
+8. To execute the job, click on Build Now, which will trigger a new build.
+
+9. Once the job is complete, you can view the test report either on the console output or by using the HTML report (index.html).
 
 <br/>
 
- 
+## Execution using command line: mvn commands
 
-## Prerequisites
+### Prerequisite
 
-Installed TestNg plugin via eclipseIDE workplace
+- Install the latest Maven and set the MAVEN_HOME and add it to paths in your system variables.
+- Clone the repository: <command here
+
+### Steps 
+
+1. Open cmd or equivalent and go to the cloned repo location.
+2. Execute: mvn clean install -PRegression -Dbrowser=chrome OR mvn clean install -PRegression -Dbrowser=edge
+
+You will get the test run result on the cmd console. Also, the latest test report is updated @ reports/index.html
+
+<br/>
+
+## Execution via IDE: Eclipse
+
+### Prerequisites
+
+- Download the Eclipse IDE 
+- Install the TestNg plugin via the Eclipse Marketplace
 
 ### Run via EclipseIDE
 
-Ran the test by going to testng.xml placed under path test/TestSuite/testng.xml
+- Goto : testsuite/testng.xml
+- Right Click -> Run As -> TestNG Suite
 
-The test reports are  generated under test/reports/index
+- You will get the test run result on the cmd console. Also, the latest test report is updated @ reports/index.html
 
+<br/>
 
+## Know Issues
 
-# Open issues/To be Discussed
+Listing the known issues which could not be resolved due to time constraints: 
 
+- Multiple warnings on the console output : "WARNING: Connection reset : java.net.SocketException: Connection reset....." .
+  
+- For the hyperlink page verification, the clicks on the hyperlinks opens new tabs but they are not closed after the test execution. Also, the assert is a workaround for now. It just checks if there is no error on clicks then the test case is assumed to be a success.
 
--Selection of off range dates in the current month
--If Phone number takes characters and not numbers
+There is no impact on the test cases because of these though. 
 
+<br/>
 
-Test Plan is attached in the folder Test Plan
-Test Report for previous run is attached with in GITHub under Reports folder
-- 
+## Application Observations 
+
+- Selection of off range dates in the current month is allowed in the application. Test cases don't select these dates though. 
+- Phone number takes characters and not numbers. 

@@ -50,12 +50,12 @@ public class ErrorValidationsBooking extends BaseTest
 	public void unavailableDate() throws Exception
 	{
 		BookRoom bookRoomDetails = bookerPlatform.submitRoomBooking();
-		bookRoomDetails.selectDate("April", Arrays.asList("2", "3","4"));
+		bookRoomDetails.selectDate("April", Arrays.asList("17", "18"));
 		bookRoomDetails.bookdetails("Aakanksha", "Mishra", "aakanksha@gmail.com", "973333178558290");
 		bookRoomDetails.closePopUp();
 		
 		BookRoom bookroomdetails1 = bookerPlatform.submitRoomBooking();
-		bookroomdetails1.selectDate("April", Arrays.asList("2", "3","4"));
+		bookroomdetails1.selectDate("April", Arrays.asList("17", "18"));
 		bookroomdetails1.bookdetails("John", "monroe", "John1344@gmail.com", "9713437080452");
 		Assert.assertEquals(
 				"The room dates are either invalid or are already booked for one or more of the dates that you have selected.",

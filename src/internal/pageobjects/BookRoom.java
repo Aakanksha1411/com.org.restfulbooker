@@ -46,7 +46,10 @@ public class BookRoom extends AbstractComponent {
 	WebElement close;
 
 	@FindBy(xpath = ".//div[@aria-label='onRequestClose Example']")
-	WebElement modal;
+	WebElement successMessage;
+	
+	
+	
 
 	@FindBy(css = ".rbc-event-content")
 	WebElement dateSelection;
@@ -108,7 +111,7 @@ public class BookRoom extends AbstractComponent {
 
 	public String confirmation()
 	{
-		return modal.getText();
+		return successMessage.getText();
 	}
 
 	public String selectedDates()
