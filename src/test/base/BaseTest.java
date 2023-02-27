@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import internal.pageobjects.BookerPlatform;
@@ -40,7 +41,7 @@ public class BaseTest {
 		}
 
 		else if (browsername.equalsIgnoreCase("edge")) {
-			// Edge
+		
 			WebDriverManager.edgedriver().setup();
 			EdgeOptions edgeoptions = new EdgeOptions();
 
@@ -64,9 +65,12 @@ public class BaseTest {
 
 	}
 
-	/*
-	 * @AfterMethod public void TearDown() {
-	 * 
-	 * driver.close(); }
-	 */
+	
+	  @AfterMethod public void TearDown() {
+	  
+	  driver.close(); 
+	  
+	  }
+	 
+
 }

@@ -13,7 +13,7 @@ public class SubmitDetails extends BaseTest {
 
 	@Test
 
-	public void successUserRegistration() {
+	public void Successdetailsubmission() {
 
 		BookerPlatform submitdetailsuser = new BookerPlatform(driver);
 		submitdetailsuser.submitdetails("Aakanksha", "aakanksha1411@gmail.com", "971708504521", "Hi There ",
@@ -32,14 +32,10 @@ public class SubmitDetails extends BaseTest {
 	}
 
 	@Test
-	public void Footerlinks() {
 
-		WebElement footerlinks = driver.findElement(By.id("footer"));
-		System.out.println(footerlinks.findElements(By.tagName("a")).size());
-		for (int i = 1; i < footerlinks.findElements(By.tagName("a")).size(); i++) {
-			String clickonlinks = Keys.chord(Keys.CONTROL, Keys.ENTER);
-             footerlinks.findElements(By.tagName("a")).get(i).sendKeys(clickonlinks);
+	public void Footerlink() {
 
-		}
+		Assert.assertEquals(submitdetailsuser.Footerlinks(), 6);
 	}
+
 }

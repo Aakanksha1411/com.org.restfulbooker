@@ -9,9 +9,17 @@ src\test\features
 The framework implements The TestNG framework for generating reports and is integrated with Jenkins tool.
 The Framework can be run in Chrome and Edge browsers
 
+Tested with:
+
+JDK 10
+Maven 3.6
+Windows 10
+
 <br/>
 
+# Data Dependency
 
+Need to feed the Month/Date before running the end to end test for booking rooms.
 
 
 # Execution steps
@@ -19,58 +27,74 @@ The Framework can be run in Chrome and Edge browsers
 ##Pre-requisites
 
 Java 11 or Java 17
+Github Plugins in Jenkins
 
 
-###  Setup Job to Run Automated Test with Jenkins
+###  Setup Job to Run Automated Test with Jenkins tool(CI/CD)
+  Ran the Jenkins dashboard by downloading .war file from jenkins and running on  http://localhost:8080/
+  CMD Commands given to run .war file to run Jenkins on local host
+  java -jar jenkins .war -httpPort=8080
+  
+After login/registering 
+  
+1.Clicked on New Item in the Jenkins dashboard
 
-1.	Click on New Item in the Jenkins dashboard
-2.	Next enter the Job name, Select Job type as Freestyle project, and click on OK button
-3.	specify the git repo URL by selecting the Git radio button under the Source Code Management section           
-4.	https://github.com/Aakanksha1411/com.org.restfulbooker.git
-5.	Add Build Command and since the project used for this is of type Maven, hence selecting the Invoke top-level Maven targets option.
-6.	Select the Maven version and enter the Maven command under Goals; in this case, it will be – test -PRegression 
-7.	To execute the job Click on Build Now, which will trigger a new build 
-8.	Once the build is completed, you can see the console output or the HTML report (index.html) by clicking on the Build number
+2.Next entered the Job name, Selected Job type as Freestyle project, and clicked on OK button
+
+3.Specified the git repo URL by selecting the Git radio button under the Source Code Management section           
+https://github.com/Aakanksha1411/com.org.restfulbooker.git
+
+4.Added Branches to build - */main
+
+5.Added Build Command under Build Steps and since the project used for this is of type Maven, hence selecting the Invoke top- level Maven targets option.
+
+6.Added index.html for reporting under Index page[s] of Reports section
+
+7.Selected the Maven version and entered the Maven command under Goals;
+ in this case, it will be – test -PRegression -D Browser= chrome or edge 
+ 
+8.Executed the job, Clicked on Build Now, which  triggered a new build 
+
+9.Once the build is completed, viewed the console output or the HTML report (index.html) by clicking on the Build number
 
 
 
 <br/>
 
-##Prerequisites
+## Run on command prompt through mvn command
+
+
+### Prerequisite
 
 Install Latest Maven and set the path in your system variables
 
-### Run on command prompt through mvn command
 
+1.opened cmd and went to the location where folder is saved
 
-1.open cmd and go to the location where folder is saved
-2.Run the test by giving command-
-mvn test -PRegression DBrowser = chrome
-
-mvn test -PRegression DBrowser = edge
+2.Ran the test by giving command-
+mvn clean install test -PRegression DBrowser = chrome
+mvn clean install test -PRegression DBrowser = edge
 
 <br/>
 
  
 
-##Prerequisites
+## Prerequisites
 
-Install TestNg plugin via eclipseIDE workplace
+Installed TestNg plugin via eclipseIDE workplace
 
-### Run via IDE
+### Run via EclipseIDE
 
-Run the test by going to testng.xml placed under path test/TestSuite/testng.xml
+Ran the test by going to testng.xml placed under path test/TestSuite/testng.xml
+The test reports are  generated under test/reports/index
 
 
 
-# Open issues
+# Open issues/To be Discussed
 
 
 -Selection of off range dates in the current month
 -If Phone number takes characters and not numbers
 
 
-
-- 
-- 
 - 
